@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jp.haiyou.attendance.web.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.jp.haiyou.attendance.web.vo.Role">
+    <id column="ROLEID" jdbcType="INTEGER" property="roleid" />
+    <result column="ROLETYPE" jdbcType="VARCHAR" property="roletype" />
+    <result column="ROLEATTENDTIME" jdbcType="TIME" property="roleattendtime" />
+    <result column="ROLEQUITTIME" jdbcType="TIME" property="rolequittime" />
+    <result column="ROLECURRENTMONTHTIME" jdbcType="REAL" property="rolecurrentmonthtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLEID, ROLETYPE, ROLEATTENDTIME, ROLEQUITTIME, ROLECURRENTMONTHTIME
+  </sql>
+  <insert id="insertSelective" keyColumn="ROLEID" keyProperty="roleid" parameterType="com.jp.haiyou.attendance.web.vo.Role" useGeneratedKeys="true">
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roletype != null">
+        ROLETYPE,
+      </if>
+      <if test="roleattendtime != null">
+        ROLEATTENDTIME,
+      </if>
+      <if test="rolequittime != null">
+        ROLEQUITTIME,
+      </if>
+      <if test="rolecurrentmonthtime != null">
+        ROLECURRENTMONTHTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roletype != null">
+        #{roletype,jdbcType=VARCHAR},
+      </if>
+      <if test="roleattendtime != null">
+        #{roleattendtime,jdbcType=TIME},
+      </if>
+      <if test="rolequittime != null">
+        #{rolequittime,jdbcType=TIME},
+      </if>
+      <if test="rolecurrentmonthtime != null">
+        #{rolecurrentmonthtime,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jp.haiyou.attendance.web.vo.Role">
+    update role
+    <set>
+      <if test="roletype != null">
+        ROLETYPE = #{roletype,jdbcType=VARCHAR},
+      </if>
+      <if test="roleattendtime != null">
+        ROLEATTENDTIME = #{roleattendtime,jdbcType=TIME},
+      </if>
+      <if test="rolequittime != null">
+        ROLEQUITTIME = #{rolequittime,jdbcType=TIME},
+      </if>
+      <if test="rolecurrentmonthtime != null">
+        ROLECURRENTMONTHTIME = #{rolecurrentmonthtime,jdbcType=REAL},
+      </if>
+    </set>
+    where ROLEID = #{roleid,jdbcType=INTEGER}
+  </update>
+</mapper>

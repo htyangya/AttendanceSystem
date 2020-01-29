@@ -1,0 +1,36 @@
+.register{
+	border-top: 1px solid white;
+	border-right: 1px solid white;
+	border-radius: 3%;
+	box-shadow: 0px 0px 4px #ccc;
+	width: 650px;
+	padding: 50px;
+	margin: auto;
+	margin-top: 30px;
+	background-color:gainsboro;
+	box-sizing: border-box;
+}
+
+#sizes{
+	position: relative;
+
+	float: left;
+
+	padding:0px;
+
+	margin-left: 5px;
+
+	line-height: 1.42857143;
+
+	color: #428bca;
+
+	text-decoration: none;
+
+	background-color: #fff;
+
+	border: 0px solid #ddd;
+}
+
+#bookUrl{
+	display: none;
+}

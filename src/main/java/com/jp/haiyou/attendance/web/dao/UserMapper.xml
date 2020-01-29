@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jp.haiyou.attendance.web.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.jp.haiyou.attendance.web.vo.User">
+    <id column="USERID" jdbcType="INTEGER" property="userid" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="USERBIRTHDAY" jdbcType="DATE" property="userbirthday" />
+    <result column="USERGENDER" jdbcType="VARCHAR" property="usergender" />
+    <result column="USERPASSWORD" jdbcType="VARCHAR" property="userpassword" />
+    <result column="USERTYPE" jdbcType="INTEGER" property="usertype" />
+    <result column="USERSUPERUSER" jdbcType="INTEGER" property="usersuperuser" />
+    <result column="USERADDRESS" jdbcType="VARCHAR" property="useraddress" />
+    <result column="USERHOMETOWN" jdbcType="VARCHAR" property="userhometown" />
+    <result column="USERPHONENUMBER" jdbcType="VARCHAR" property="userphonenumber" />
+    <result column="USERRESIDENCEID" jdbcType="VARCHAR" property="userresidenceid" />
+    <result column="USERENTRY" jdbcType="TIMESTAMP" property="userentry" />
+    <result column="USERLEAVE" jdbcType="TIMESTAMP" property="userleave" />
+    <result column="USERLASTLOGINTIME" jdbcType="TIMESTAMP" property="userlastlogintime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    USERID, USERNAME, USERBIRTHDAY, USERGENDER, USERPASSWORD, USERTYPE, USERSUPERUSER, 
+    USERADDRESS, USERHOMETOWN, USERPHONENUMBER, USERRESIDENCEID, USERENTRY, USERLEAVE, 
+    USERLASTLOGINTIME
+  </sql>
+  <insert id="insertSelective" keyColumn="USERID" keyProperty="userid" parameterType="com.jp.haiyou.attendance.web.vo.User" useGeneratedKeys="true">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="userbirthday != null">
+        USERBIRTHDAY,
+      </if>
+      <if test="usergender != null">
+        USERGENDER,
+      </if>
+      <if test="userpassword != null">
+        USERPASSWORD,
+      </if>
+      <if test="usertype != null">
+        USERTYPE,
+      </if>
+      <if test="usersuperuser != null">
+        USERSUPERUSER,
+      </if>
+      <if test="useraddress != null">
+        USERADDRESS,
+      </if>
+      <if test="userhometown != null">
+        USERHOMETOWN,
+      </if>
+      <if test="userphonenumber != null">
+        USERPHONENUMBER,
+      </if>
+      <if test="userresidenceid != null">
+        USERRESIDENCEID,
+      </if>
+      <if test="userentry != null">
+        USERENTRY,
+      </if>
+      <if test="userleave != null">
+        USERLEAVE,
+      </if>
+      <if test="userlastlogintime != null">
+        USERLASTLOGINTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userbirthday != null">
+        #{userbirthday,jdbcType=DATE},
+      </if>
+      <if test="usergender != null">
+        #{usergender,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null">
+        #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null">
+        #{usertype,jdbcType=INTEGER},
+      </if>
+      <if test="usersuperuser != null">
+        #{usersuperuser,jdbcType=INTEGER},
+      </if>
+      <if test="useraddress != null">
+        #{useraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userhometown != null">
+        #{userhometown,jdbcType=VARCHAR},
+      </if>
+      <if test="userphonenumber != null">
+        #{userphonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userresidenceid != null">
+        #{userresidenceid,jdbcType=VARCHAR},
+      </if>
+      <if test="userentry != null">
+        #{userentry,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userleave != null">
+        #{userleave,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userlastlogintime != null">
+        #{userlastlogintime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jp.haiyou.attendance.web.vo.User">
+    update user
+    <set>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userbirthday != null">
+        USERBIRTHDAY = #{userbirthday,jdbcType=DATE},
+      </if>
+      <if test="usergender != null">
+        USERGENDER = #{usergender,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null">
+        USERPASSWORD = #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null">
+        USERTYPE = #{usertype,jdbcType=INTEGER},
+      </if>
+      <if test="usersuperuser != null">
+        USERSUPERUSER = #{usersuperuser,jdbcType=INTEGER},
+      </if>
+      <if test="useraddress != null">
+        USERADDRESS = #{useraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userhometown != null">
+        USERHOMETOWN = #{userhometown,jdbcType=VARCHAR},
+      </if>
+      <if test="userphonenumber != null">
+        USERPHONENUMBER = #{userphonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userresidenceid != null">
+        USERRESIDENCEID = #{userresidenceid,jdbcType=VARCHAR},
+      </if>
+      <if test="userentry != null">
+        USERENTRY = #{userentry,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userleave != null">
+        USERLEAVE = #{userleave,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userlastlogintime != null">
+        USERLASTLOGINTIME = #{userlastlogintime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where USERID = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

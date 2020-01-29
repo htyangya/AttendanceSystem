@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jp.haiyou.attendance.web.dao.AttendanceMapper">
+  <resultMap id="BaseResultMap" type="com.jp.haiyou.attendance.web.vo.Attendance">
+    <id column="ATTENDANCEID" jdbcType="INTEGER" property="attendanceid" />
+    <result column="ATTENDANCEUSERID" jdbcType="INTEGER" property="attendanceuserid" />
+    <result column="ATTENDANCETIME" jdbcType="TIMESTAMP" property="attendancetime" />
+    <result column="ATTENDANCESTANDARD" jdbcType="TIME" property="attendancestandard" />
+    <result column="ATTENDANCEMARK" jdbcType="VARCHAR" property="attendancemark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ATTENDANCEID, ATTENDANCEUSERID, ATTENDANCETIME, ATTENDANCESTANDARD, ATTENDANCEMARK
+  </sql>
+  <insert id="insertSelective" parameterType="com.jp.haiyou.attendance.web.vo.Attendance">
+    insert into attendance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attendanceid != null">
+        ATTENDANCEID,
+      </if>
+      <if test="attendanceuserid != null">
+        ATTENDANCEUSERID,
+      </if>
+      <if test="attendancetime != null">
+        ATTENDANCETIME,
+      </if>
+      <if test="attendancestandard != null">
+        ATTENDANCESTANDARD,
+      </if>
+      <if test="attendancemark != null">
+        ATTENDANCEMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attendanceid != null">
+        #{attendanceid,jdbcType=INTEGER},
+      </if>
+      <if test="attendanceuserid != null">
+        #{attendanceuserid,jdbcType=INTEGER},
+      </if>
+      <if test="attendancetime != null">
+        #{attendancetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendancestandard != null">
+        #{attendancestandard,jdbcType=TIME},
+      </if>
+      <if test="attendancemark != null">
+        #{attendancemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jp.haiyou.attendance.web.vo.Attendance">
+    update attendance
+    <set>
+      <if test="attendanceuserid != null">
+        ATTENDANCEUSERID = #{attendanceuserid,jdbcType=INTEGER},
+      </if>
+      <if test="attendancetime != null">
+        ATTENDANCETIME = #{attendancetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendancestandard != null">
+        ATTENDANCESTANDARD = #{attendancestandard,jdbcType=TIME},
+      </if>
+      <if test="attendancemark != null">
+        ATTENDANCEMARK = #{attendancemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ATTENDANCEID = #{attendanceid,jdbcType=INTEGER}
+  </update>
+</mapper>
