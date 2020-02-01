@@ -1,15 +1,15 @@
 package com.jp.haiyou.attendance.web.service;
 
-import com.jp.haiyou.attendance.web.dao.UserMapper;
+import com.jp.haiyou.attendance.web.vo.Role;
 import com.jp.haiyou.attendance.web.vo.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.jp.haiyou.attendance.web.vo.UserLoginInfo;
 
 import java.util.List;
 
 
 public interface IUserService {
 
-    List<User> selectAll(Integer page,Integer pageSize);
+    List<User> selectAll(Integer page, Integer pageSize);
 
+    UserLoginInfo login(Integer userid, String password);
 }

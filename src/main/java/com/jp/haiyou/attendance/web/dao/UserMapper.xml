@@ -16,11 +16,12 @@
     <result column="USERENTRY" jdbcType="TIMESTAMP" property="userentry" />
     <result column="USERLEAVE" jdbcType="TIMESTAMP" property="userleave" />
     <result column="USERLASTLOGINTIME" jdbcType="TIMESTAMP" property="userlastlogintime" />
+    <result column="USERERRORCOUNT" jdbcType="INTEGER" property="usererrorcount" />
   </resultMap>
   <sql id="Base_Column_List">
     USERID, USERNAME, USERBIRTHDAY, USERGENDER, USERPASSWORD, USERTYPE, USERSUPERUSER, 
     USERADDRESS, USERHOMETOWN, USERPHONENUMBER, USERRESIDENCEID, USERENTRY, USERLEAVE, 
-    USERLASTLOGINTIME
+    USERLASTLOGINTIME, USERERRORCOUNT
   </sql>
   <insert id="insertSelective" keyColumn="USERID" keyProperty="userid" parameterType="com.jp.haiyou.attendance.web.vo.User" useGeneratedKeys="true">
     insert into user
@@ -64,6 +65,9 @@
       <if test="userlastlogintime != null">
         USERLASTLOGINTIME,
       </if>
+      <if test="usererrorcount != null">
+        USERERRORCOUNT,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="username != null">
@@ -104,6 +108,9 @@
       </if>
       <if test="userlastlogintime != null">
         #{userlastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usererrorcount != null">
+        #{usererrorcount,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -148,6 +155,9 @@
       </if>
       <if test="userlastlogintime != null">
         USERLASTLOGINTIME = #{userlastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usererrorcount != null">
+        USERERRORCOUNT = #{usererrorcount,jdbcType=INTEGER},
       </if>
     </set>
     where USERID = #{userid,jdbcType=INTEGER}

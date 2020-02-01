@@ -2,6 +2,7 @@ package com.jp.haiyou.attendance.web.vo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class User {
     private Integer userid;
@@ -15,6 +16,8 @@ public class User {
     private String userpassword;
 
     private Integer usertype;
+
+    private Role role;
 
     private Integer usersuperuser;
 
@@ -31,6 +34,8 @@ public class User {
     private LocalDateTime userleave;
 
     private LocalDateTime userlastlogintime;
+
+    private Integer usererrorcount;
 
     @Override
     public String toString() {
@@ -49,7 +54,16 @@ public class User {
                 ", userentry=" + userentry +
                 ", userleave=" + userleave +
                 ", userlastlogintime=" + userlastlogintime +
+                ", usererrorcount=" + usererrorcount +
                 '}';
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Integer getUserid() {
@@ -162,5 +176,13 @@ public class User {
 
     public void setUserlastlogintime(LocalDateTime userlastlogintime) {
         this.userlastlogintime = userlastlogintime;
+    }
+
+    public Integer getUsererrorcount() {
+        return usererrorcount;
+    }
+
+    public void setUsererrorcount(Integer usererrorcount) {
+        this.usererrorcount = usererrorcount;
     }
 }

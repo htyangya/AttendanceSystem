@@ -1,15 +1,14 @@
 package com.jp.haiyou.attendance.web.dao;
 
+import com.jp.haiyou.attendance.web.vo.Role;
 import com.jp.haiyou.attendance.web.vo.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface UserMapper {
     @Delete({
         "delete from user",
@@ -24,14 +23,14 @@ public interface UserMapper {
         "USERADDRESS, USERHOMETOWN, ",
         "USERPHONENUMBER, USERRESIDENCEID, ",
         "USERENTRY, USERLEAVE, ",
-        "USERLASTLOGINTIME)",
+        "USERLASTLOGINTIME, USERERRORCOUNT)",
         "values (#{username,jdbcType=VARCHAR}, #{userbirthday,jdbcType=DATE}, ",
         "#{usergender,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, ",
         "#{usertype,jdbcType=INTEGER}, #{usersuperuser,jdbcType=INTEGER}, ",
         "#{useraddress,jdbcType=VARCHAR}, #{userhometown,jdbcType=VARCHAR}, ",
         "#{userphonenumber,jdbcType=VARCHAR}, #{userresidenceid,jdbcType=VARCHAR}, ",
         "#{userentry,jdbcType=TIMESTAMP}, #{userleave,jdbcType=TIMESTAMP}, ",
-        "#{userlastlogintime,jdbcType=TIMESTAMP})"
+        "#{userlastlogintime,jdbcType=TIMESTAMP}, #{usererrorcount,jdbcType=INTEGER})"
     })
     @Options(useGeneratedKeys=true,keyProperty="userid")
     int insert(User record);
@@ -42,12 +41,18 @@ public interface UserMapper {
         "select",
         "USERID, USERNAME, USERBIRTHDAY, USERGENDER, USERPASSWORD, USERTYPE, USERSUPERUSER, ",
         "USERADDRESS, USERHOMETOWN, USERPHONENUMBER, USERRESIDENCEID, USERENTRY, USERLEAVE, ",
-        "USERLASTLOGINTIME",
+        "USERLASTLOGINTIME, USERERRORCOUNT",
         "from user",
         "where USERID = #{userid,jdbcType=INTEGER}"
     })
     @ResultMap("com.jp.haiyou.attendance.web.dao.UserMapper.BaseResultMap")
     User selectByPrimaryKey(Integer userid);
+
+    @Select("select * from user where USERID = #{userid}")
+    @Results({@Result(column="USERTYPE", property="usertype"),
+            @Result(property = "role",column = "USERTYPE",javaType = Role.class,
+            one = @One(select = "com.jp.haiyou.attendance.web.dao.RoleMapper.selectByPrimaryKey"))})
+    User selectByPrimaryKeyOfRole(Integer userid);
 
     int updateByPrimaryKeySelective(User record);
 
@@ -65,7 +70,8 @@ public interface UserMapper {
           "USERRESIDENCEID = #{userresidenceid,jdbcType=VARCHAR},",
           "USERENTRY = #{userentry,jdbcType=TIMESTAMP},",
           "USERLEAVE = #{userleave,jdbcType=TIMESTAMP},",
-          "USERLASTLOGINTIME = #{userlastlogintime,jdbcType=TIMESTAMP}",
+          "USERLASTLOGINTIME = #{userlastlogintime,jdbcType=TIMESTAMP},",
+          "USERERRORCOUNT = #{usererrorcount,jdbcType=INTEGER}",
         "where USERID = #{userid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);

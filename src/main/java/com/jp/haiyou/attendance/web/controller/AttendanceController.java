@@ -22,15 +22,12 @@ public class AttendanceController {
     @Autowired
     private IAttendanceService service;
 
-    @RequestMapping("/test")
-    public ModelAndView queryIndex(HttpServletRequest request){
+    //打卡预备的函数
+    @RequestMapping("/punch")
+    public ModelAndView punch(){
         ModelAndView modelAndView = new ModelAndView();
-        User user = new User();
-        user.setUsername("陈凯琪");
-        user.setUsersuperuser(0);
-//        request.setAttribute("loginUser",user);
-        modelAndView.addObject("loginUser",user);
-        modelAndView.setViewName("base");
+
+//        modelAndView.setViewName("punch");
 
 
         return modelAndView;

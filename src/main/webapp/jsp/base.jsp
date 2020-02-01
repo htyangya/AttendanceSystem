@@ -65,7 +65,7 @@
         <!-- Logo -->
         <a href="all-admin-index.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>数据</b></span>
+            <span class="logo-mini"><b>勤怠</b></span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>博恒勤怠システン</b></span>
         </a>
@@ -94,8 +94,11 @@
                                 <img src="${path}/dist/adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    管理人 - 数据管理员
-                                    <small>最后登录 11:20AM</small>
+                                    ${loginUser.role.roletype}<br/>
+                                    <c:if test="${loginUser.usersuperuser == 1}">
+                                        スーパー管理者
+                                    </c:if>
+                                    <small>${loginUser.userlastlogintime}</small>
                                 </p>
                             </li>
                             <!-- Menu Body
@@ -114,11 +117,9 @@
                     </li>-->
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">修改密码</a>
-                                </div>
+
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">注销</a>
+                                    <a href="/logout" class="btn btn-default btn-flat">登出</a>
                                 </div>
                             </li>
                         </ul>
