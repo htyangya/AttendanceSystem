@@ -1,11 +1,7 @@
 package com.jp.haiyou.attendance.web.dao;
 
 import com.jp.haiyou.attendance.web.vo.Attendance;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -48,4 +44,26 @@ public interface AttendanceMapper {
         "where ATTENDANCEID = #{attendanceid,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Attendance record);
+
+
+    @Select(
+            {
+                    "select count(ATTENDANCETIME) from attendance" +
+                            " where date(ATTENDANCETIME) = DATE(now()) and" +
+                            " ATTENDANCEMARK= #{attendancemark} and ATTENDANCEUSERID = #{uid};"
+            }
+    )
+    Integer todayCheck(@Param("uid") int uid, @Param("attendancemark") String attendancemark);
+
+    @Select(
+            {
+                    "select ATTENDANCETIME from attendance" +
+                            " where date(ATTENDANCETIME) = DATE(now()) and" +
+                            " ATTENDANCEMARK= #{syukkin} and ATTENDANCEUSERID = #{userid};"
+            }
+    )
+    String syukkinjikan(@Param("userid") int userid, @Param("syukkin") String syukkin);
+
+
+
 }

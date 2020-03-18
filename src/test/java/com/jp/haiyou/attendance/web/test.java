@@ -1,8 +1,10 @@
 package com.jp.haiyou.attendance.web;
 
 
+import com.jp.haiyou.attendance.web.dao.AttendanceMapper;
 import com.jp.haiyou.attendance.web.dao.RoleMapper;
 import com.jp.haiyou.attendance.web.dao.UserMapper;
+import com.jp.haiyou.attendance.web.vo.Attendance;
 import com.jp.haiyou.attendance.web.vo.Role;
 import com.jp.haiyou.attendance.web.vo.User;
 import org.junit.Test;
@@ -29,6 +31,9 @@ public class test {
     @Autowired
     RoleMapper roleMapper;
 
+    @Autowired
+    AttendanceMapper attendanceMapper;
+
     @Test
     @Transactional
     public void xx(){
@@ -38,4 +43,18 @@ public class test {
 //        Role role = roleMapper.selectByPrimaryKey(user.getUsertype());
 //        System.out.println(role);
     }
+    @Test
+
+    public void aa(){
+        Integer check = attendanceMapper.todayCheck(10001, "退社");
+        System.out.println(check);
+
+    }
+    @Test
+    public void bb(){
+        String check = attendanceMapper.syukkinjikan(10001, "出勤");
+        System.out.println(check);
+    }
+
+
 }

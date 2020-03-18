@@ -33,14 +33,17 @@ public class AttendanceController {
 
 
     @RequestMapping(value = {"/punch"},method = RequestMethod.GET)
-   public ModelAndView punch(){
+   public ModelAndView punch(@SessionAttribute(required = false,value = "loginUser") User loginUser){
 
       ModelAndView modelAndView = new ModelAndView();
+      modelAndView.addObject("todayCheck",service.todayCheck(loginUser.getUserid(),"出勤"));
+      modelAndView.addObject("todayoCheck",service.todayCheck(loginUser.getUserid(),"退社"));
+      modelAndView.addObject("syukkinjikan",service.syukkinjikan(loginUser.getUserid(),"出勤"));
+        modelAndView.addObject("tasyajikan",service.syukkinjikan(loginUser.getUserid(),"退社"));
+      System.out.println(service.todayCheck(loginUser.getUserid(),"退社"));
+      modelAndView.setViewName("list/punch");
+      return modelAndView;
 
-       modelAndView.setViewName("list/punch");
-
-
-       return modelAndView;
    }
     @RequestMapping(value = {"/punch"},method = RequestMethod.POST)
     public String punchPost(@SessionAttribute(required = false,value = "loginUser") User loginUser,String attendancemark){
@@ -48,6 +51,7 @@ public class AttendanceController {
         service.punch(attendancemark,loginUser);
         return "redirect:/attendance/punch";
     }
+
 
 
 }

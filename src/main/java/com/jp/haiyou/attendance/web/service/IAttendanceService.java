@@ -15,4 +15,9 @@ public interface IAttendanceService {
     List<User> selectAll(Integer page, Integer pageSize);
 
     Attendance punch(String attendancemark, User user );
+
+    Integer todayCheck(Integer userid, String syukkin);
+    String syukkinjikan(Integer userid, String syukkin);
+
+
 }

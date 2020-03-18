@@ -14,7 +14,30 @@ public class RoleServiceImpl implements IRoleService {
     private RoleMapper roleMapper;
 
     @Override
+    public void tsuika(Role role) {
+
+        roleMapper.insert(role);
+
+    }
+
+    @Override
+    public void delete(int roleid) {
+
+        roleMapper.delete(roleid);
+    }
+
+    @Override
+    public Role Update(Role role) {
+
+        roleMapper.Update(role);
+        return  role;
+    }
+
+
+    @Override
     public List<Role> selectAll() {
         return roleMapper.selectAll();
     }
+
+
 }

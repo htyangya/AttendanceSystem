@@ -6,4 +6,9 @@ import java.util.List;
 
 public interface IRoleService {
     List<Role> selectAll();
+    void tsuika(Role role);
+    void delete(int roleid);
+
+    Role Update(Role role);
 }
+

@@ -26,7 +26,7 @@ public class AttendanceServiceImpl implements IAttendanceService {
     public List<User> selectAll(Integer page, Integer pageSize) {
         return null;
     }
-
+  
     @Override
     public Attendance punch(String attendancemark, User user) {
         Attendance attendance = new Attendance();
@@ -46,8 +46,20 @@ public class AttendanceServiceImpl implements IAttendanceService {
         //设置现在的时间
         attendance.setAttendancetime(LocalDateTime.now());
         AttendanceMapper.insert(attendance);
+
         return attendance;
     }
+
+    @Override
+    public Integer todayCheck(Integer userid, String syukkin) {
+        return AttendanceMapper.todayCheck(userid,syukkin);
+    }
+
+    @Override
+    public String syukkinjikan(Integer userid, String syukkin) {
+        return AttendanceMapper.syukkinjikan(userid,syukkin);
+    }
+
 
 
 }

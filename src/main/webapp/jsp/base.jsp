@@ -1,3 +1,4 @@
+<%--@elvariable id="loginUser" type="org.apache.commons.dbcp.datasources.PooledConnectionAndInfo"--%>
 <%@ page import="com.jp.haiyou.attendance.web.vo.User" %>
 <%@ page language="java" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -165,15 +166,15 @@
 
 
                 <!-- 菜单 -->
-                <li id="admin-daka"><a href="all-admin-datalist.html"><i class="fa fa-dashboard"></i> <span>打刻</span></a></li>
+                <li id="admin-daka"><a href="http://localhost:8888/attendance/punch"><i class="fa fa-dashboard"></i> <span>打刻</span></a></li>
 
-                <li id="admin-work"><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> <span>勤務評定一覧</span></a></li>
+                <li id="admin-work"><a href="http://localhost:8888/user/user-list"><i class="fa fa-dashboard"></i> <span>勤務評定一覧</span></a></li>
                 <c:if test="${loginUser.usersuperuser==1}">
                 <!-- 菜单 -->
                 <li id="admin-people"><a href="all-admin-datalist.html"><i class="fa fa-dashboard"></i> <span>従業員の管理
 
                     <!-- 菜单 -->
-                <li id="admin-character"><a href="all-admin-datalist.html"><i class="fa fa-dashboard"></i> <span>キャラクター管理</span></a></li></span></a></li>
+                <li id="admin-character"><a href="http://localhost:8888/role/role-list"><i class="fa fa-dashboard"></i> <span>キャラクター管理</span></a></li></span></a></li>
                 </c:if>
 
 
@@ -293,6 +294,7 @@
             window.location.href="?page=1pagesize="+pageSize
         });
     });
+
 
 
     // 设置激活菜单

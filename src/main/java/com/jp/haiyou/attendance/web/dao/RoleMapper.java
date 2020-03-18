@@ -15,7 +15,8 @@ public interface RoleMapper {
         "delete from role",
         "where ROLEID = #{roleid,jdbcType=INTEGER}"
     })
-    int deleteByPrimaryKey(Integer roleid);
+    @Options(useGeneratedKeys=true,keyProperty="roleid")
+    int delete(int roleid);
 
     @Insert({
         "insert into role (ROLETYPE, ROLEATTENDTIME, ",
@@ -41,14 +42,19 @@ public interface RoleMapper {
 
     @Update({
         "update role",
-        "set ROLETYPE = #{roletype,jdbcType=VARCHAR},",
-          "ROLEATTENDTIME = #{roleattendtime,jdbcType=TIME},",
-          "ROLEQUITTIME = #{rolequittime,jdbcType=TIME},",
-          "ROLECURRENTMONTHTIME = #{rolecurrentmonthtime,jdbcType=REAL}",
-        "where ROLEID = #{roleid,jdbcType=INTEGER}"
+        "set roletype = #{roletype,jdbcType=VARCHAR},",
+          "roleattendtime = #{roleattendtime,jdbcType=TIME},",
+          "rolequittime = #{rolequittime,jdbcType=TIME},",
+          "rolecurrentmonthtime = #{rolecurrentmonthtime,jdbcType=REAL}",
+        "where roleid = #{roleid,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKey(Role record);
+    @Options(useGeneratedKeys=true,keyProperty="roleid")
+    int Update(Role record);
+
 
     @Select("select * from role")
     List<Role> selectAll();
+
+
+
 }
