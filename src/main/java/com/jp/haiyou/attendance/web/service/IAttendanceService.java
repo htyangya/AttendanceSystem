@@ -1,6 +1,7 @@
 package com.jp.haiyou.attendance.web.service;
 
 import com.jp.haiyou.attendance.web.vo.Attendance;
+import com.jp.haiyou.attendance.web.vo.AttendanceRecord;
 import com.jp.haiyou.attendance.web.vo.User;
 
 import java.util.List;
@@ -20,4 +21,5 @@ public interface IAttendanceService {
     String syukkinjikan(Integer userid, String syukkin);
 
 
+    List<AttendanceRecord> selectAttendanceRecord(Integer id);
 }

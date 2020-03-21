@@ -4,6 +4,7 @@ import com.jp.haiyou.attendance.web.dao.AttendanceMapper;
 import com.jp.haiyou.attendance.web.dao.RoleMapper;
 import com.jp.haiyou.attendance.web.service.IAttendanceService;
 import com.jp.haiyou.attendance.web.vo.Attendance;
+import com.jp.haiyou.attendance.web.vo.AttendanceRecord;
 import com.jp.haiyou.attendance.web.vo.Role;
 import com.jp.haiyou.attendance.web.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,10 @@ public class AttendanceServiceImpl implements IAttendanceService {
         return AttendanceMapper.syukkinjikan(userid,syukkin);
     }
 
+    @Override
+    public List<AttendanceRecord> selectAttendanceRecord(Integer id) {
+        return AttendanceMapper.selectAttendanceRecord(id);
+    }
 
 
 }

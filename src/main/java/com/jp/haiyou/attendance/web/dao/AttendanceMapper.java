@@ -1,8 +1,11 @@
 package com.jp.haiyou.attendance.web.dao;
 
 import com.jp.haiyou.attendance.web.vo.Attendance;
+import com.jp.haiyou.attendance.web.vo.AttendanceRecord;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface AttendanceMapper {
@@ -65,5 +68,6 @@ public interface AttendanceMapper {
     String syukkinjikan(@Param("userid") int userid, @Param("syukkin") String syukkin);
 
 
+    List<AttendanceRecord>  selectAttendanceRecord(Integer uid);
 
 }

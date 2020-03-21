@@ -2,6 +2,7 @@ package com.jp.haiyou.attendance.web.vo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class User {
@@ -154,6 +155,20 @@ public class User {
         this.userresidenceid = userresidenceid == null ? null : userresidenceid.trim();
     }
 
+    private String simpleformt(LocalDateTime date) {
+        if (date == null) {
+            return "";
+        }
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return dtf.format(date);
+    }
+
+
+    public String getUserentryByFormat() {
+
+        return simpleformt(userentry);
+    }
+
     public LocalDateTime getUserentry() {
         return userentry;
     }
@@ -162,12 +177,20 @@ public class User {
         this.userentry = userentry;
     }
 
+    public String getUserleaveByFormat() {
+        return simpleformt(userleave);
+    }
+
     public LocalDateTime getUserleave() {
         return userleave;
     }
 
     public void setUserleave(LocalDateTime userleave) {
         this.userleave = userleave;
+    }
+
+    public String getUserlastlogintimeByFormat() {
+        return simpleformt(userlastlogintime);
     }
 
     public LocalDateTime getUserlastlogintime() {

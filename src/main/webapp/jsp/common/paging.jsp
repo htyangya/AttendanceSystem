@@ -8,7 +8,7 @@
             <select class="form-control" id="pageSelect">
                 <c:forEach begin="5" end="25" step="5" var="page">
                     <option
-                            <c:if test="${pageInfo.size}==${page}">
+                            <c:if test="${pageInfo.size == page}">
                                 selected
                             </c:if>
                     >${page}</option>

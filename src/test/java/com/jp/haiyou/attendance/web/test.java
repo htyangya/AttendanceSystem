@@ -5,6 +5,7 @@ import com.jp.haiyou.attendance.web.dao.AttendanceMapper;
 import com.jp.haiyou.attendance.web.dao.RoleMapper;
 import com.jp.haiyou.attendance.web.dao.UserMapper;
 import com.jp.haiyou.attendance.web.vo.Attendance;
+import com.jp.haiyou.attendance.web.vo.AttendanceRecord;
 import com.jp.haiyou.attendance.web.vo.Role;
 import com.jp.haiyou.attendance.web.vo.User;
 import org.junit.Test;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring/spring-*.xml"})
@@ -30,6 +32,7 @@ public class test {
 
     @Autowired
     RoleMapper roleMapper;
+
 
     @Autowired
     AttendanceMapper attendanceMapper;
@@ -52,8 +55,10 @@ public class test {
     }
     @Test
     public void bb(){
-        String check = attendanceMapper.syukkinjikan(10001, "出勤");
-        System.out.println(check);
+        List<AttendanceRecord> records = attendanceMapper.selectAttendanceRecord(10000);
+        for (AttendanceRecord record : records) {
+            System.out.println(record);
+        }
     }
 
 

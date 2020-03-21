@@ -4,12 +4,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <rapid:override name="content">
-    <h3>キャラクター管理</h3>
+    <%--<h3>キャラクター管理</h3>--%>
 
     <!--模态窗口-->
     <div class="tab-pane" id="tab-model">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            追加
+            新增
         </button>
 
         <div id="myModal" class="modal modal-primary" role="dialog">
@@ -18,7 +18,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">追加</h4>
+                        <h4 class="modal-title">新增</h4>
                     </div>
 
                     <div class="modal-body">
@@ -98,27 +98,31 @@
 
     <!--模态窗口/-->
 
-    <table class="table table-hover">
+    <table class="table table-hover table-bordered text-center">
+        <thead>
         <tr>
-            <td>角色类型</td>
-            <td>出勤标准时间</td>
-            <td>退勤标准时间</td>
-            <td>当月应出勤天数</td>
+            <th>角色类型</th>
+            <th>出勤标准时间</th>
+            <th>退勤标准时间</th>
+            <th>当月应出勤天数</th>
+            <th>操作</th>
         </tr>
+        </thead>
+
         <c:forEach items="${roles}" var="role">
 
             <tr>
 
-                <td><input type="text" name="roletype" value="${role.roletype}"/></td>
-                <td><input type="time"  name="roleattendtime" value="${role.roleattendtime}"/></td>
-                <td><input type="time"  name="rolequittime" value="${role.rolequittime}"/></td>
-                <td><input type="text"name="rolecurrentmonthtime"  value="${role.rolecurrentmonthtime}"/></td>
+                <td><input type="text" class="form-control" name="roletype" value="${role.roletype}"/></td>
+                <td><input type="time" class="form-control" name="roleattendtime" value="${role.roleattendtime}"/></td>
+                <td><input type="time" class="form-control" name="rolequittime" value="${role.rolequittime}"/></td>
+                <td><input type="text" class="form-control" name="rolecurrentmonthtime"  value="${role.rolecurrentmonthtime}"/></td>
 
 
-                <td><input type="button" onclick="showzhi(this,${role.roleid})" value="保存"/></td>
-
-
-                <td><a href="delete.do?roleid=${role.roleid}"><input type="button" value="删除"/></a></td>
+                <td>
+                    <input type="button"  class="btn btn-primary" onclick="showzhi(this,${role.roleid})" value="保存"/>
+                    <a href="delete.do?roleid=${role.roleid}"class="btn btn-danger" >删除</a>
+                </td>
             </tr>
         </c:forEach>
 

@@ -8,21 +8,18 @@
 
         <!--工具栏-->
         <div class="pull-left">
-            <div class="form-group form-inline">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default" title="新增"><i class="fa fa-file-o"></i> 新增</button>
-                    <button type="button" class="btn btn-default" title="离职"><i class="fa fa-trash-o"></i> 离职</button>
-                </div>
-            </div>
+
         </div>
         <div class="box-tools pull-right">
             <div class="has-feedback">
-                <input type="text" class="form-control input-sm" placeholder="搜索">
+                <input type="text" class="form-control input-sm" placeholder="搜索" disabled>
                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
             </div>
         </div>
         <!--工具栏/-->
-
+        <div class="pull-left" style="margin-bottom: 10px">
+            <h4 class="text-info">ユーザーIDが${uid}の出勤記録:</h4>
+        </div>
         <!--数据列表-->
         <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
             <thead>
@@ -30,50 +27,23 @@
                 <th class="" style="padding-right:0px;">
                     <input id="selall" type="checkbox" class="icheckbox_square-blue">
                 </th>
-                <th class="sorting_asc">ユーザーID</th>
-                <th class="sorting_desc">名前</th>
-                <th class="sorting_asc sorting_asc_disabled">誕生日</th>
-                <th class="sorting_desc sorting_desc_disabled">性別</th>
-                <th class="sorting">パスワード</th>
-                <th class="text-center sorting">権限</th>
-                <th class="text-center">住所</th>
-                <th class="text-center">出生地</th>
-                <th class="text-center">電話番号</th>
-                <th class="text-center">在留カード番号</th>
-                <th class="text-center">エントリー日</th>
-                <th class="text-center">departure日</th>
-                <th class="text-center">最后登录时间</th>
+                <th class="text-center">日付</th>
+                <th class="text-center">出勤時間</th>
+                <th class="text-center">遅刻</th>
+                <th class="text-center">退勤時間</th>
+                <th class="text-center">早退</th>
+
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${pageInfo.list}" var="user">
+            <c:forEach items="${records}" var="record">
             <tr>
                 <td><div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input name="ids" type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
-                <td>${user.userid}</td>
-                <td>${user.username}</td>
-                <td>${user.userbirthday}</td>
-                <td>${user.usergender}</td>
-                <td>${user.userpassword}</td>
-                <td>${user.usersuperuser}</td>
-                <td>${user.useraddress}</td>
-                <td>${user.userhometown}</td>
-                <td>${user.userphonenumber}</td>
-                <td>${user.userresidenceid}</td>
-                <td>
-                        ${user.userentryByFormat}
-                </td>
-                <td>
-                        ${user.userleaveByFormat}
-                </td>
-                <td>
-                        ${user.userlastlogintimeByFormat}
-                </td>
-
-                <td class="text-center">
-                    <a type="button" class="btn bg-olive btn-xs" href="${path}/attendance/punch-list/${user.userid}">考勤</a>
-                    <button type="button" class="btn bg-aqua btn-xs">修改</button>
-                    <%--<button type="button" class="btn bg-olive btn-xs">编辑</button>--%>
-                </td>
+                <td class="text-center">${record.attendanceDate}</td>
+                <td class="text-center">${record.syukintime}</td>
+                <td  class="text-center <c:if test="${record.lateMinute > 0}" >text-danger </c:if>" >${record.lateMinute}</td>
+                <td class="text-center">${record.taikintime}</td>
+                <td class="text-center <c:if test="${record.leaveEarly > 0}" >text-danger </c:if>" >${record.leaveEarly}</td>
             </tr>
             </c:forEach>
             </tbody>

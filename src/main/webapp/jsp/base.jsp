@@ -166,15 +166,15 @@
 
 
                 <!-- 菜单 -->
-                <li id="admin-daka"><a href="http://localhost:8888/attendance/punch"><i class="fa fa-dashboard"></i> <span>打刻</span></a></li>
+                <li id="admin-daka"><a href="${path}/attendance/punch"><i class="fa fa-dashboard"></i> <span>打刻</span></a></li>
 
-                <li id="admin-work"><a href="http://localhost:8888/user/user-list"><i class="fa fa-dashboard"></i> <span>勤務評定一覧</span></a></li>
+                <li id="admin-work"><a href="${path}/attendance/punch-list/${loginUser.userid}"><i class="fa fa-dashboard"></i> <span>勤務評定一覧</span></a></li>
                 <c:if test="${loginUser.usersuperuser==1}">
                 <!-- 菜单 -->
-                <li id="admin-people"><a href="all-admin-datalist.html"><i class="fa fa-dashboard"></i> <span>従業員の管理
+                <li id="admin-people"><a href="${path}/user/user-list"><i class="fa fa-dashboard"></i> <span>従業員の管理
 
                     <!-- 菜单 -->
-                <li id="admin-character"><a href="http://localhost:8888/role/role-list"><i class="fa fa-dashboard"></i> <span>キャラクター管理</span></a></li></span></a></li>
+                <li id="admin-character"><a href="${path}/role/role-list"><i class="fa fa-dashboard"></i> <span>キャラクター管理</span></a></li></span></a></li>
                 </c:if>
 
 
@@ -195,7 +195,7 @@
 
         <!-- 内容头部 -->
         <section class="content-header">
-            消息推送预留区域
+            <%--消息推送预留区域--%>
 
         </section>
         <!-- 内容头部 /-->
@@ -291,7 +291,7 @@
 
         $("#pageSelect").change(function () {
             var pageSize=$(this).children('option:selected').val();
-            window.location.href="?page=1pagesize="+pageSize
+            window.location.href="?page=1&pageSize="+pageSize
         });
     });
 
